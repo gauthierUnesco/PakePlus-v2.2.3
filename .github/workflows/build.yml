@@ -88,7 +88,7 @@ jobs:
               with:
                   tagName: 'AiCHA'
                   releaseName: 'AiCHA v__VERSION__'
-                  releaseBody: 'This is a workflow to help you automate the publishing of your PakePlus project to GitHub Packages.'
+                  releaseBody: 'This is the desktop application for AiCHA.'
                   releaseDraft: false
                   prerelease: false
                   publish: true
