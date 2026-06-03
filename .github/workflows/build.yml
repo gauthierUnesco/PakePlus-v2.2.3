@@ -4,8 +4,6 @@ on:
     push:
         tags:
             - 'v*'
-        # branches:
-        #     - 'main'
 jobs:
     publish-tauri:
         permissions:
@@ -38,6 +36,11 @@ jobs:
         timeout-minutes: 60
         steps:
             - uses: actions/checkout@v4
+            - name: Clear pnpm cache
+              run: |
+                  corepack disable || true
+                  npm cache clean --force
+              shell: bash
             - name: Check Tauri
               if: env.TAURI_PRIVATE_KEY == ''
               run: |
@@ -54,7 +57,7 @@ jobs:
                   version: 9
                   run_install: false
             - name: Install frontend dependencies
-              run: pnpm install
+              run: pnpm install --no-frozen-lockfile
             - name: install Rust stable
               uses: dtolnay/rust-toolchain@stable
               with:
